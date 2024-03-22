@@ -1,0 +1,25 @@
+{
+  "name": "cw-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dateGenerator.js",
+    "start-ts": "tsc && node dist/initApp.js",
+    "compile-ts": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.535.0",
+    "@aws-sdk/lib-dynamodb": "^3.535.0",
+    "aws-sdk": "^2.1572.0",
+    "axios": "^1.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.25",
+    "typescript": "^5.4.2"
+  }
+}
