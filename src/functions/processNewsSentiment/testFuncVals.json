@@ -1,0 +1,33 @@
+{
+  "Records": [
+    {
+      "eventID": "1",
+      "eventName": "INSERT",
+      "eventVersion": "1.0",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "us-east-1",
+      "dynamodb": {
+        "Keys": {
+          "Id": {
+            "N": "2cbb0f44-67e2-476b-8229-77310471d4b8"
+          }
+        },
+        "NewImage": {
+          "currencyName": {
+            "S": "EUR"
+          },
+          "timestamp": {
+            "S": "1710853926000"
+          },
+          "summary": {
+            "S": "A experiment has all but come to an end. On March 19th officials at the Bank of Japan ( o ) announced that, with inflation of 2% 'in sight', they would scrap a suite of measures instituted to pull the economy out of its deflationary doldrums."
+          }
+        },
+        "SequenceNumber": "111",
+        "SizeBytes": 26,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+      },
+      "eventSourceARN": "stream-ARN"
+    }
+  ]
+}

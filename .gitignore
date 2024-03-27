@@ -1,4 +1,6 @@
 ./src/frontend/node_modules
+./src/**/node_modules
 .env
 ./node_modules
 node_modules
+
