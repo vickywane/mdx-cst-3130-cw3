@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./dateGenerator.js",
     "start-ts": "tsc && node dist/initApp.js",
+    "download-synthetic": "node src/services/downloadSyntheticData.js",
+    "plotly": "node src/PlotSynthetic/graph_plot.mjs",
     "compile-ts": "tsc"
   },
   "keywords": [],
@@ -16,7 +18,8 @@
     "@aws-sdk/client-dynamodb": "^3.535.0",
     "@aws-sdk/lib-dynamodb": "^3.535.0",
     "aws-sdk": "^2.1572.0",
-    "axios": "^1.6.7"
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^20.11.25",

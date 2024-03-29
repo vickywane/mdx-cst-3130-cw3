@@ -16,8 +16,7 @@ export async function getConnectionIds() {
     return response.Items;
 };
 
-
-export async function getData(coin){
+export async function getData(coin : string){
     const queries= {
         priceQuery:{
             TableName: "CryptoExchangeRates",
@@ -61,17 +60,19 @@ export async function getData(coin){
 
        
         console.log(rawExchangeData)
-        let sentimentXaxis =  []
-        let sentimentYaxis = []
-        let exchangeXaxis = []
-        let exchangeYaxis = []
+        let sentimentXaxis : Array<any> =  []
+        let sentimentYaxis : Array<any> = []
+        let exchangeXaxis : Array<any> = []
+        let exchangeYaxis : Array<any> = []
 
+        // @ts-ignore
        await rawSentimentData?.Items.forEach(item => {  
            sentimentYaxis.push(item.Sentiment)
            sentimentXaxis.push(item.TimePublished)
                     
         });
 
+        // @ts-ignore
         await rawExchangeData?.Items.forEach(item => {  
             exchangeYaxis.push(item.ExchangeRates)
             exchangeXaxis.push(item.CrytoTs)
@@ -109,7 +110,7 @@ console.log(JSON.stringify(formattedData))
 
 
 //Deletes the specified connection ID
-export async function deleteConnectionId(connectionId){
+export async function deleteConnectionId(connectionId : string){
     console.log("Deleting connection Id: " + connectionId);
 
     const deleteCommand = new DeleteCommand ({

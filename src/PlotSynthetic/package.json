@@ -13,6 +13,7 @@
     "@aws-sdk/client-sagemaker-runtime": "^3.540.0",
     "@types/node": "^20.11.30",
     "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
     "plotly": "^1.0.6"
   }
 }

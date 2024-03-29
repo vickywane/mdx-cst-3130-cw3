@@ -1,19 +1,16 @@
-//Axios will handle HTTP requests to web service
+import dotenv from 'dotenv'
 import axios from 'axios';
+import Plotly from 'plotly';
 
-//The ID of the student whose data you want to plot
-let studentID = '';
+dotenv.config()
 
-//URL where student data is available
+let studentID = process.env.STUDENT_ID;
 let url = 'https://y2gtfx0jg3.execute-api.us-east-1.amazonaws.com/prod/';
 
-//Authentication details for Plotly
-//ADD YOUR OWN AUTHENTICATION DETAILS
-const PLOTLY_USERNAME = '';
-const PLOTLY_KEY = '';
+//Auth details for My Plotly Account
+const PLOTLY_USERNAME = process.env.PLOTLY_USERNAME;
+const PLOTLY_KEY = process.env.PLOTLY_KEY;
 
-//Initialize Plotly with user details.
-import Plotly from 'plotly';
 let plotly = Plotly(PLOTLY_USERNAME, PLOTLY_KEY);
 
 async function handler(event) {
