@@ -15,7 +15,7 @@ export const handler = async(event) => {
     const command = new DeleteCommand({
         TableName: "mdx-fx-websocket-clients",
         Key: {
-            ConnectionId: connId
+            connectionId: connId
         }
       });
     

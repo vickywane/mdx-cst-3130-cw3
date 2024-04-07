@@ -1,4 +1,11 @@
 //Import external library with websocket functions
+
+// let connection = new WebSocket("wss://oa4yaqfqw1.execute-api.us-east-1.amazonaws.com/prod");
+//   connection.onopen = function(event){
+//     sendMessage(activeCoin);
+//   };
+
+
 import {
   ApiGatewayManagementApiClient,
   PostToConnectionCommand,

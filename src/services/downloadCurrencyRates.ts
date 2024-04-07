@@ -6,7 +6,7 @@ const dynamoClient = DynamoDBDocument.from(client);
 
 const axios = require("axios");
 
-const DEFAULT_CURRENCY = "USD";
+const DEFAULT_CURRENCY = "EUR";
 const DEFAULT_API_KEY = "JWCN89KTI7ZSKN3G";
 
 interface funcInputType {
@@ -38,7 +38,7 @@ export const downloadHistoricalCurrencies = async ({
           Item: {
             timestamp: key,
             currencyName: DEFAULT_CURRENCY,
-            currency: targetCurrency,
+            targetCurrency,
             rate: currencyList[key]["4. close"],
           },
         })

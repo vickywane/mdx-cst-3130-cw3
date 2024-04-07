@@ -8,19 +8,19 @@ const {
   downloadCurrencyNews
 } = require("./services/downloadCurrencySentiment");
 
-// downloadHistoricalCurrencies({ targetCurrency : "EUR" })
-//   .then((data : any) => {
-//     // console.log(data);
-//   })
-//   .catch((e : any) => {
-//     console.log(e);
-//   });
-
-  downloadCurrencyNews({ targetCurrency : "EUR" })
+downloadHistoricalCurrencies({ targetCurrency : "USD" })
   .then((data : any) => {
     // console.log(data);
   })
   .catch((e : any) => {
     console.log(e);
   });
+
+  // downloadCurrencyNews({ targetCurrency : "EUR" })
+  // .then((data : any) => {
+  //   // console.log(data);
+  // })
+  // .catch((e : any) => {
+  //   console.log(e);
+  // });
 

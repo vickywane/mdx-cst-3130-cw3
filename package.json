@@ -19,7 +19,8 @@
     "@aws-sdk/lib-dynamodb": "^3.535.0",
     "aws-sdk": "^2.1572.0",
     "axios": "^1.6.7",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "react-plotly.js": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.25",
