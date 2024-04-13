@@ -29,3 +29,8 @@
     - currencyName (pk)
     - timestamp (sk)
     - sentiment (sk)
+
+<!-- STUFF -->
+- handleDownload.js -> splitData -> convert to Json Line -> upload to S3 -> Train sagemaker -> get endpoints from Sage maker 
+
+2024-04-06 22:00:00 -> 2024-04-21 18:00:00

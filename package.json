@@ -8,6 +8,8 @@
     "start": "node ./dateGenerator.js",
     "start-ts": "tsc && node dist/initApp.js",
     "download-synthetic": "node src/services/downloadSyntheticData.js",
+    "download-dynamo": "node src/services/downloadDynamoData.js",
+    "split-dynamo": "node src/services/splitDynamoData.js",
     "plotly": "node src/PlotSynthetic/graph_plot.mjs",
     "compile-ts": "tsc"
   },

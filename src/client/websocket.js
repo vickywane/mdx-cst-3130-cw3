@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let activeCoin = "EUR"; // Initial active coin
+  let activeCoin = "GBP"; // Initial active coin
   let coinData = {}; // Placeholder for coin data
   let connection = null; // Placeholder for WebSocket connection
 
@@ -113,6 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     sentimentChartDiv.innerHTML = "";
 
+    console.log("PIE CHART", positivePercentage, negativePercentage, neutralPercentage)
+
     Plotly.newPlot(
       sentimentChartDiv,
       [
@@ -133,16 +135,15 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  //  "wss://8o3klxybef.execute-api.us-east-1.amazonaws.com/prod"
   // WebSocket setup
-  connection = new WebSocket(
-    "wss://l5gt8vwh4g.execute-api.us-east-1.amazonaws.com/production"
-  );
+  connection = new WebSocket("wss://zkgfib12c5.execute-api.us-east-1.amazonaws.com/production");
   connection.onopen = function (event) {
     sendMessage(activeCoin, connection);
   };
   connection.onmessage = function (msg) {
     const data = JSON.parse(msg.data);
+
+    console.log("INCOMING DATA =>", data)
     
     coinData = data;
     updateCharts();

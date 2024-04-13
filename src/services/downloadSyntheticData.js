@@ -1,12 +1,10 @@
 const fs = require("fs");
 const axios = require("axios");
 
-https://y2gtfx0jg3.execute-api.us-east-1.amazonaws.com/prod/M00949037
-
+// PT- const url =
+//   "https://y2gtfx0jg3.execute-api.us-east-1.amazonaws.com/prod/M00949037";
 const url =
-  "https://y2gtfx0jg3.execute-api.us-east-1.amazonaws.com/prod/M00949037";
-// const url =
-//   "https://y2gtfx0jg3.execute-api.us-east-1.amazonaws.com/prod/M00958495";
+  "https://y2gtfx0jg3.execute-api.us-east-1.amazonaws.com/prod/M00958495";
 const trainFile = "train.json";
 const testFile = "test.json";
 
@@ -42,7 +40,9 @@ async function pullAndSaveData(
       JSON.stringify({ ...data, target: testData }, null, 4)
     );
 
-    console.log(`Total data of ${totalData} has been successfully saved to ${getDownloadPath()}`);
+    console.log(
+      `Total data of ${totalData} has been successfully saved to ${getDownloadPath()}`
+    );
   } catch (error) {
     console.error("Error:", error.message);
   }
