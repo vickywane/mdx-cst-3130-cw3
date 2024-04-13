@@ -17,6 +17,9 @@ const TABLE_NAME = "mdx-fx-sentiments";
 export const handler = async (event) => {
   for (let record of event.Records) {
     if (record.eventName === "INSERT") {
+
+      console.log(record.dynamodb.NewImage)
+
       const currency = record.dynamodb.NewImage?.currencyName?.S;
       const summary = record.dynamodb.NewImage?.summary?.S;
       const timestamp = record.dynamodb.NewImage?.timestamp?.S;

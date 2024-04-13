@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Data Visualization Website</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="container-fluid">
+    <div class="App">
+      <div>
+        <h1 class="text-center mb-10">Currency Data Visualization Website</h1>
+      </div>
+      <div class="container">
+        <div id="cryptoBtns">
+          <button id="ADA" class="btn btn-primary">ADA</button>
+          <!-- <button id="ETH" class="btn btn-primary">ETH</button>
+                <button id="DOT" class="btn btn-primary">DOT</button>
+                <button id="BNB" class="btn btn-primary">BNB</button>
+                <button id="BTC" class="btn btn-primary">BTC</button> -->
+        </div>
+
+        <div class="charts">
+          <div>
+            <h1 id="chartTitle">Showing Prices And Predictions</h1>
+            <div id="timeseries" class="timeseries"></div>
+          </div>
+
+          <div class="sentiment">
+            <h1 id="sentimentTitle">Sentiments of Coins</h1>
+            <div id="sentimentChart" class="sentimentChart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="./websocket.js"></script>
+  </body>
+</html>

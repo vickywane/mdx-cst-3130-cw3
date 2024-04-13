@@ -15,7 +15,6 @@ export const handler = async (event) => {
         TableName: "mdx-fx-websocket-clients",
         Item: {
             connectionId: connId,
-            timestamp: new Date()
         }
     };
 

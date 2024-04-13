@@ -25,15 +25,17 @@ const downloadHistoricalCurrencies = (_a) => __awaiter(void 0, [_a], void 0, fun
         for (const key in currencyList) {
             const index = Object.keys(currencyList).indexOf(key);
             console.log(`INSERTING item ${index} for ${key} to DynamoDB`);
-            yield dynamoClient.send(new lib_dynamodb_1.PutCommand({
-                TableName: CURRENCY_TABLE_NAME,
-                Item: {
-                    timestamp: key,
-                    currencyName: DEFAULT_CURRENCY,
-                    targetCurrency,
-                    rate: currencyList[key]["4. close"],
-                },
-            }));
+            if (index <= 510) {
+                yield dynamoClient.send(new lib_dynamodb_1.PutCommand({
+                    TableName: CURRENCY_TABLE_NAME,
+                    Item: {
+                        timestamp: key,
+                        currencyName: targetCurrency,
+                        targetCurrency: DEFAULT_CURRENCY,
+                        rate: currencyList[key]["4. close"],
+                    },
+                }));
+            }
         }
         return data;
     }

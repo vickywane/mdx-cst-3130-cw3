@@ -10,7 +10,7 @@ const DEFAULT_CURRENCY = "EUR";
 const DEFAULT_API_KEY = "JWCN89KTI7ZSKN3G";
 
 interface funcInputType {
-  targetCurrency: "EUR" | "GBP" | "YEN" | "NGN";
+  targetCurrency: "EUR" | "GBP" | "CAD" | "NGN" | "GHS";
   outputSize?: "compact" | "full";
 }
 
@@ -32,17 +32,19 @@ export const downloadHistoricalCurrencies = async ({
 
       console.log(`INSERTING item ${index} for ${key} to DynamoDB`);
 
-      await dynamoClient.send(
-        new PutCommand({
-          TableName: CURRENCY_TABLE_NAME,
-          Item: {
-            timestamp: key,
-            currencyName: DEFAULT_CURRENCY,
-            targetCurrency,
-            rate: currencyList[key]["4. close"],
-          },
-        })
-      );
+      if (index <= 510) {
+        await dynamoClient.send(
+          new PutCommand({
+            TableName: CURRENCY_TABLE_NAME,
+            Item: {
+              timestamp: key,
+              currencyName: targetCurrency,
+              targetCurrency: DEFAULT_CURRENCY,
+              rate: currencyList[key]["4. close"],
+            },
+          })
+        );
+      }
     }
 
     return data;

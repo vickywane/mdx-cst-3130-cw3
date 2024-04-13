@@ -1,1 +1,0 @@
-# S3 SageMaker data output directory.

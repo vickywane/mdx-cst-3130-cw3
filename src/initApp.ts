@@ -5,22 +5,21 @@ const {
 } = require("./services/downloadCurrencyRates");
 
 const {
-  downloadCurrencyNews
+  downloadCurrencyNews,
 } = require("./services/downloadCurrencySentiment");
 
-downloadHistoricalCurrencies({ targetCurrency : "USD" })
-  .then((data : any) => {
+downloadHistoricalCurrencies({ targetCurrency: "GHS", outputSize: "full" })
+  .then((data: any) => {
     // console.log(data);
   })
-  .catch((e : any) => {
+  .catch((e: any) => {
     console.log(e);
   });
 
-  // downloadCurrencyNews({ targetCurrency : "EUR" })
-  // .then((data : any) => {
-  //   // console.log(data);
-  // })
-  // .catch((e : any) => {
-  //   console.log(e);
-  // });
-
+// downloadCurrencyNews({ targetCurrency: "EUR" })
+//   .then((data: any) => {
+//     // console.log(data);
+//   })
+//   .catch((e: any) => {
+//     console.log(e);
+//   });
