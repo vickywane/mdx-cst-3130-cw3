@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import {
   DynamoDBDocumentClient,
@@ -7,13 +5,10 @@ import {
   DeleteCommand,
   QueryCommand,
 } from "@aws-sdk/lib-dynamodb";
-// import { WsServiceDB } from "./wsServiceDB";
 import {
   ApiGatewayManagementApiClient,
   PostToConnectionCommand,
 } from "@aws-sdk/client-apigatewaymanagementapi";
-
-// CONSTANTS ==>
 
 export const DATA_QUERY = (currency) => ({
   priceQuery: {
@@ -34,56 +29,39 @@ export const DATA_QUERY = (currency) => ({
       ":curr": currency,
     },
     SortKeyCondition: "TimePublished",
-  },
-  // preditionsQuery: {
-  //   TableName: "Crypto",
-  //   Limit: 5,
-  //   ScanIndexForward: false,
-  //   KeyConditionExpression: "Currency = :curr",
-  //   ExpressionAttributeValues: {
-  //     ":curr": currency,
-  //   },
-  // },
+  }
 });
 
-export const API_GATEWAY_ENDPOINT = "https://odvmw37prk.execute-api.us-east-1.amazonaws.com/production/"
+export const API_GATEWAY_ENDPOINT =
+  "https://odvmw37prk.execute-api.us-east-1.amazonaws.com/production/";
 
-
-// WS SERVICE =====>
-
-//Returns promises to send messages to all connected clients
 export async function getSendMessagePromises(data, endpoint) {
   const WsServiceDBClient = new WsServiceDB();
 
   let clientIdArray = await WsServiceDBClient.getConnectionIds();
-  
+
   if (clientIdArray <= 0) {
-    console.error("No active connections to push message into!")
-    
-    return 
+    console.error("No active connections to push message into!");
+
+    return;
   }
 
   const apiGwClient = new ApiGatewayManagementApiClient({ endpoint });
 
-  // compile & return send messages promises in an array
   return clientIdArray?.map(async ({ connectionId }) => {
     try {
       console.log("Sending data '" + data + "' to: " + connectionId);
 
-      //Create post to connection command
       const postToConnectionCommand = new PostToConnectionCommand({
         ConnectionId: connectionId,
         Data: data,
       });
 
-      //Wait for API Gateway to execute and log result
       await apiGwClient.send(postToConnectionCommand);
       console.log("Message '" + data + "' sent to: " + connectionId);
     } catch (err) {
       console.log("Failed to send data to: " + connectionId);
 
-      //Delete connection ID from database
-      // @ts-ignore
       if (err.statusCode == 410) {
         try {
           await WsServiceDBClient.deleteConnectionId(connectionId);
@@ -98,16 +76,6 @@ export async function getSendMessagePromises(data, endpoint) {
     }
   });
 }
-
-
-// WS SERVICE DB ==============>
-
-
-
-//Import library and scan command
-
-// const client = new DynamoDBClient({});
-// const docClient = DynamoDBDocumentClient.from(client);
 
 class WsServiceDB {
   client;
@@ -130,7 +98,9 @@ class WsServiceDB {
   async getData(currency) {
     try {
       const exhangeQuery = new QueryCommand(DATA_QUERY(currency).priceQuery);
-      const sentimentQuery = new QueryCommand(DATA_QUERY(currency).sentimentQuery);
+      const sentimentQuery = new QueryCommand(
+        DATA_QUERY(currency).sentimentQuery
+      );
       // const preditionsQuery = new QueryCommand(DATA_QUERY("btc").priceQuery);
 
       let rawExchangeData = await this.docClient.send(exhangeQuery);
@@ -182,25 +152,17 @@ class WsServiceDB {
   }
 }
 
-
-
-// INDEX FILE
-
-
-
-// @ts-ignore
 export const handler = async (event) => {
   const WsServiceDBClient = new WsServiceDB();
 
   try {
     const data = await WsServiceDBClient.getData("EUR");
-    
+
     let sendMsgPromises = await getSendMessagePromises(
       JSON.stringify(data),
       API_GATEWAY_ENDPOINT
     );
 
-    //Execute promises
     await Promise.all(sendMsgPromises);
   } catch (err) {
     return { statusCode: 500, body: "Error: " + JSON.stringify(err) };
