@@ -15,7 +15,7 @@ const client_dynamodb_1 = require("@aws-sdk/client-dynamodb");
 const client = new client_dynamodb_1.DynamoDBClient({});
 const dynamoClient = lib_dynamodb_1.DynamoDBDocument.from(client);
 const axios = require("axios");
-const DEFAULT_CURRENCY = "USD";
+const DEFAULT_CURRENCY = "EUR";
 const DEFAULT_API_KEY = "JWCN89KTI7ZSKN3G";
 const CURRENCY_TABLE_NAME = "mdx-fx-rates";
 const downloadHistoricalCurrencies = (_a) => __awaiter(void 0, [_a], void 0, function* ({ targetCurrency, outputSize = "compact", }) {
@@ -25,15 +25,17 @@ const downloadHistoricalCurrencies = (_a) => __awaiter(void 0, [_a], void 0, fun
         for (const key in currencyList) {
             const index = Object.keys(currencyList).indexOf(key);
             console.log(`INSERTING item ${index} for ${key} to DynamoDB`);
-            yield dynamoClient.send(new lib_dynamodb_1.PutCommand({
-                TableName: CURRENCY_TABLE_NAME,
-                Item: {
-                    timestamp: key,
-                    currencyName: DEFAULT_CURRENCY,
-                    currency: targetCurrency,
-                    rate: currencyList[key]["4. close"],
-                },
-            }));
+            if (index <= 510) {
+                yield dynamoClient.send(new lib_dynamodb_1.PutCommand({
+                    TableName: CURRENCY_TABLE_NAME,
+                    Item: {
+                        timestamp: key,
+                        currencyName: targetCurrency,
+                        targetCurrency: DEFAULT_CURRENCY,
+                        rate: currencyList[key]["4. close"],
+                    },
+                }));
+            }
         }
         return data;
     }

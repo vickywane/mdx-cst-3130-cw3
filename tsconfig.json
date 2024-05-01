@@ -9,7 +9,10 @@
     "outDir": "dist"
   },
   "include": [
-    "src/**/*.ts"
+    // "src/**/*.ts"
+    "src/services/downloadCurrencyRates.ts",
+    "src/services/downloadCurrencySentiment.ts",
+    "src/initApp.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -25,7 +25,6 @@ const downloadCurrencyNews = (_a) => __awaiter(void 0, [_a], void 0, function* (
     try {
         const { data } = yield axios_1.default.get(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=${DEFAULT_API_KEY}&tickers=FOREX:USD`);
         for (const item of data === null || data === void 0 ? void 0 : data.feed) {
-            // console.log("ITEM =>",  getUnixTimeStamp("20240320T201500") );
             yield dynamoClient.send(new lib_dynamodb_1.PutCommand({
                 TableName: SETIMENT_TABLE_NAME,
                 Item: {

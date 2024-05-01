@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Data Visualization Website</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div
+      class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800"
+    >
+      <div
+        class="fixed flex flex-col top-0 left-0 w-64 bg-white h-full border-r"
+      >
+        <div class="flex items-center justify-center h-14 border-b">
+          <div>MDX MyCurrency</div>
+        </div>
+        <div class="overflow-y-auto overflow-x-hidden flex-grow">
+          <div class="px-5">
+            <div class="flex flex-row items-center h-8">
+              <div class="text-sm font-light tracking-wide text-gray-500">
+                SUPPORTED CURRENCIES
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <ul id="currencyTabBtns" class="flex flex-col py-4 space-y-1">
+            <li>
+              <div
+                onclick="fetchWsData('NGN')"
+                class="relative flex hover:cursor-pointer justify-center items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
+              >
+                <span class="ml-2 text-sm tracking-wide truncate"
+                  >Nigerian Naira (NGN)</span
+                >
+              </div>
+            </li>
+
+            <li>
+              <div
+                onclick="fetchWsData('CAD')"
+                class="relative hover:cursor-pointer flex justify-center items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
+              >
+                <span class="ml-2 text-sm tracking-wide truncate"
+                  >Candaian Dollar (CAD)</span
+                >
+              </div>
+            </li>
+
+            <li>
+              <div
+                onclick="fetchWsData('USD')"
+                class="relative hover:cursor-pointer flex justify-center items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
+              >
+                <span class="ml-2 text-sm tracking-wide truncate"
+                  >American Dollar (USD)</span
+                >
+              </div>
+            </li>
+
+            <li>
+              <div
+                onclick="fetchWsData('GBP')"
+                class="relative hover:cursor-pointer flex justify-center items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
+              >
+                <span class="ml-2 text-sm tracking-wide truncate"
+                  >Great British Pound (GBP)</span
+                >
+              </div>
+            </li>
+
+            <li>
+              <div
+                onclick="fetchWsData('GHS')"
+                class="relative hover:cursor-pointer flex justify-center items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
+              >
+                <span class="ml-2 text-sm tracking-wide truncate"
+                  >Ghana Cedis (GHS)</span
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ml-[300px] mt-8">
+        <div class="charts flex flex-row">
+          <div>
+            <div class="mb-8" >
+              <h1 id="chartTitle">Showing Prices And Predictions</h1>
+            </div>
+            <div id="timeseries" class="timeseries"></div>
+          </div>
+
+          <div class="sentiment ml-24">
+
+            <div class="mb-8" >
+              <h1 id="sentimentTitle">Sentiments of Coins</h1>
+            </div>
+
+            <div id="sentimentChart" class="sentimentChart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="./websocket.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</html>

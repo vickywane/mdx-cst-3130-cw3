@@ -1,0 +1,19 @@
+{
+  "name": "plotsynthetic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-sagemaker-runtime": "^3.540.0",
+    "@types/node": "^20.11.30",
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "plotly": "^1.0.6"
+  }
+}

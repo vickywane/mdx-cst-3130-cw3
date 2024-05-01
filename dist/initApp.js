@@ -1,14 +1,14 @@
 "use strict";
 const { downloadHistoricalCurrencies, } = require("./services/downloadCurrencyRates");
-const { downloadCurrencyNews } = require("./services/downloadCurrencySentiment");
-// downloadHistoricalCurrencies({ targetCurrency : "EUR" })
-//   .then((data : any) => {
+const { downloadCurrencyNews, } = require("./services/downloadCurrencySentiment");
+// downloadHistoricalCurrencies({ targetCurrency: "GHS", outputSize: "full" })
+//   .then((data: any) => {
 //     // console.log(data);
 //   })
-//   .catch((e : any) => {
+//   .catch((e: any) => {
 //     console.log(e);
 //   });
-downloadCurrencyNews({ targetCurrency: "EUR" })
+downloadCurrencyNews({ targetCurrency: "GHS" })
     .then((data) => {
     // console.log(data);
 })
